@@ -1,11 +1,10 @@
 # devUnite
-MERN stack social network for developers
------------------------------------ 
+### MERN stack social network for developers
 
 This application uses a stack like this:
  `Node.js`, 
  `Express.js`, 
- `React.js, 
+ `React.js`, 
  `Redux.js`,
  `MongoDB`.
  
