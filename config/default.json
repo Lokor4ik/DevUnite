@@ -1,0 +1,3 @@
+﻿{
+  "mongoURI": "mongodb+srv://mak:mak@cluster0.fwg6y.mongodb.net/Cluster0?retryWrites=true&w=majority"
+}
