@@ -4,8 +4,7 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const User = require('../../models/User');
-// @TODO uncomment, when merge with Profile
-/* const Profile = require('../../models/Profile'); */
+const Profile = require('../../models/Profile');
 const Post = require('../../models/Post');
 
 // @route  POST api/posts
