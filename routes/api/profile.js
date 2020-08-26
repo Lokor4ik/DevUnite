@@ -1,4 +1,6 @@
 ﻿const express = require('express');
+const request = require('request');
+const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
@@ -302,6 +304,28 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
+
+    profile.education.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route  GET api/profile/github/:username
+// @desc   Get user repository from Github
+// @access Public
+router.get('/github/:username', async (req, res) => {
+  try {
+    const options = {
+      uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get('githubSecret')}`
+    }
+
+    const profile = await Profile.findOne({ user: req.user.id });
 
     profile.education.splice(removeIndex, 1);
 
