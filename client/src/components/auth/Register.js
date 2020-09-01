@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react'
+﻿import React, { useState } from 'react';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -6,17 +6,27 @@ const Register = () => {
     email: '',
     password: '',
     passwordDouble: ''
-  })
+  });
 
-  const { name, email, password, passwordDouble } = formData
+  const { name, email, password, passwordDouble } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== passwordDouble) {
+      console.log('Passwords do not match');
+    } else {
+      console.log(formData);
+    }
+  }
 
   return (
     <section className='container'>
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-      <form className="form" action="create-profile.html">
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <input
             type="text"
@@ -66,7 +76,7 @@ const Register = () => {
         Already have an account? <a href="login.html">Sign In</a>
       </p>
     </section>
-  )
+  );
 }
 
-export default Register
+export default Register;
