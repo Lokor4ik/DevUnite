@@ -5,10 +5,10 @@ const Navbar = () => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <a href="/">
+        <Link to="/">
           <i class="fas fa-code"></i>
           DevUnite
-        </a>
+        </Link>
       </h1>
 
       <ul>
