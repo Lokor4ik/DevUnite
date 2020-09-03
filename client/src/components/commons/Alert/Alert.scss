@@ -1,0 +1,24 @@
+﻿.alert-inner {
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.alert-item__box {
+  display: flex;
+  margin: 0.8rem 0;
+  justify-content: center;
+}
+
+.alert {
+  font-size: 13px;
+  max-width: 230px;
+  width: 100%;
+  padding: 0.4rem;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
