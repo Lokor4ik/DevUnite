@@ -2,11 +2,10 @@
 ### MERN stack social network for developers
 
 This application uses a stack like this:
- `Node.js`, 
+ `MongoDB`,
  `Express.js`, 
  `React.js`, 
- `Redux.js`,
- `MongoDB`.
+ `Node.js`.
  
 Technologies that are present and used in this project: 
  `ES6+`, 
@@ -15,4 +14,5 @@ Technologies that are present and used in this project:
  `Async/Await`,
  `Mongoose`,
  `React Hooks`,
+ `Redux.js`,
  `Heroku & Git Deployment`.
