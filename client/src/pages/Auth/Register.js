@@ -1,7 +1,8 @@
 ﻿import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../store/alert/action';
+import { registerUser } from '../../store/auth/action';
 import MainLayout from '../../hoc/MainLayout';
 
 const Register = () => {
@@ -13,28 +14,7 @@ const Register = () => {
     password: '',
     passwordDouble: ''
   });
-  /* 
-  const newUser = {
-          name,
-          email,
-          password
-        };
-  
-        try {
-          const config = {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          };
-  
-          const body = JSON.stringify(newUser);
-  
-          const res = await axios.post('/api/users', body, config);
-          console.log(res.data);
-        } catch (error) {
-          console.error(error.response.data);
-        }
-  */
+
   const { name, email, password, passwordDouble } = formData;
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,7 +25,7 @@ const Register = () => {
     if (password !== passwordDouble) {
       dispatch(setAlert('Passwords do not match', 'danger'));
     } else {
-      console.log('SUCCESS');
+      dispatch(registerUser({ name, email, password }));
     }
   }
 
@@ -62,7 +42,6 @@ const Register = () => {
               name="name"
               value={name}
               onChange={onChange}
-              required
             />
           </div>
           <div className="form-group">
@@ -72,7 +51,6 @@ const Register = () => {
               name="email"
               value={email}
               onChange={onChange}
-              required
             />
             <small className="form-text" >
               This site uses Gravatar so if you want a profile image, use a Gravatar email
@@ -85,7 +63,6 @@ const Register = () => {
               name="password"
               value={password}
               onChange={onChange}
-              minLength="6"
             />
           </div>
           <div className="form-group">
@@ -95,7 +72,6 @@ const Register = () => {
               name="passwordDouble"
               value={passwordDouble}
               onChange={onChange}
-              minLength="6"
             />
           </div>
           <input type="submit" className="btn btn-primary" value="Register" />
