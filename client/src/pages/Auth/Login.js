@@ -1,8 +1,13 @@
 ﻿import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MainLayout from '../../hoc/MainLayout';
+import { loginUser } from '../../store/auth/action';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  /* const { isAuthenticated } = useSelector((state) => state.auth); */
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,7 +19,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log('SUCCESS');
+    dispatch(loginUser(email, password));
   }
 
   return (
