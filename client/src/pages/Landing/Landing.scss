@@ -1,6 +1,6 @@
 ﻿.landing {
   position: relative;
-  background: url("../../assets/img/showcase.jpg") no-repeat center center/cover;
+  background: url("../../assets/img/landing_background.png") no-repeat center center/cover;
   flex: 1;
 }
 
@@ -14,4 +14,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  .x-large {
+    color: #fff;
+  }
 }

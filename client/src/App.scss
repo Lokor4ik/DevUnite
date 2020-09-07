@@ -1,7 +1,7 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
-  --dark-color: #343a40;
+  --primary-color: #1890ff;
+  --dark-color: #0b0b0b;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
@@ -28,6 +28,11 @@ a {
 
 ul {
   list-style: none;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
 }
 
 img {
@@ -133,6 +138,14 @@ img {
 }
 .my-3 {
   margin: 3rem 0;
+}
+
+.buttons {
+  a {
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
 }
 
 .btn {
@@ -247,19 +260,6 @@ img {
     display: block;
     margin-top: 0.3rem;
     color: #888;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="date"],
-  select,
-  textarea {
-    display: block;
-    width: 100%;
-    padding: 0.4rem;
-    font-size: 1.2rem;
-    border: 1px solid #ccc;
   }
 
   input[type="submit"],

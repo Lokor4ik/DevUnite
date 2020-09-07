@@ -1,36 +1,36 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/commons/Navbar/Navbar';
-import Landing from './pages/Landing/Landing';
-import Register from './pages/Auth/Register';
-import Login from './pages/Auth/Login';
-import { useDispatch } from 'react-redux';
-import setAuthToken from './utils/setAuthToken';
+import { useRoutes } from 'routes';
+import { useDispatch, useSelector } from 'react-redux';
+// import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './store/auth/action';
-import history from './history';
 
+import "antd/dist/antd.css";
 import './App.scss';
-
-if (localStorage.token) {
+import Loader from 'components/commons/Loader/Loader';
+/* if (localStorage.token) {
   setAuthToken(localStorage.token);
-}
+} */
 
 const App = () => {
   const dispatch = useDispatch();
+  const { isAuthenticated, loading } = useSelector(state => state.auth);
+  const routes = useRoutes(isAuthenticated);
 
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <Router history={history}>
+    <Router>
       <div className="main-wrapper">
-        <Navbar />
-        <Route exact path='/' component={Landing} />
-        <Switch>
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/login' component={Login} />
-        </Switch>
+        <Navbar isAuthenticated={isAuthenticated} />
+        {routes}
       </div>
     </Router>
   );

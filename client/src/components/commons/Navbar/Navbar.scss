@@ -6,7 +6,8 @@
   padding: 0.7rem 2rem;
   z-index: 1;
   width: 100%;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 2px;
+  border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3;
   opacity: 0.9;
 
   a {
@@ -37,5 +38,17 @@
     &:hover {
       color: var(--primary-color);
     }
+  }
+}
+
+.navbar-logout {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--primary-color);
   }
 }

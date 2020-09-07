@@ -1,11 +1,10 @@
 ﻿import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { setAlert } from '../../store/alert/action';
+import { Link, withRouter } from 'react-router-dom';
 import { registerUser } from '../../store/auth/action';
-import MainLayout from '../../hoc/MainLayout';
+import { message, Input } from 'antd';
 
-const Register = () => {
+const Register = ({ history }) => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -23,65 +22,71 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== passwordDouble) {
-      dispatch(setAlert('Passwords do not match', 'danger'));
+      message.error('Passwords do not match');
     } else {
-      dispatch(registerUser({ name, email, password }));
+      dispatch(registerUser({ name, email, password, history }));
     }
   }
 
   return (
-    <MainLayout>
-      <div className="container">
-        <h1 className="large text-primary">Sign Up</h1>
-        <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-        <form className="form" onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              value={name}
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={onChange}
-            />
-            <small className="form-text" >
-              This site uses Gravatar so if you want a profile image, use a Gravatar email
+    <div className="pages-wrapper">
+      <section className="register">
+        <div className="container">
+          <h1 className="large text-primary">Sign Up</h1>
+          <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+          <form className="form" onSubmit={onSubmit}>
+            <div className="form-group">
+              <Input
+                size='large'
+                type="text"
+                placeholder="Name"
+                name="name"
+                value={name}
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                size='large'
+                type="email"
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={onChange}
+              />
+              <small className="form-text" >
+                This site uses Gravatar so if you want a profile image, use a Gravatar email
           </small>
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="passwordDouble"
-              value={passwordDouble}
-              onChange={onChange}
-            />
-          </div>
-          <input type="submit" className="btn btn-primary" value="Register" />
-        </form>
-        <p className="my-1">
-          Already have an account? <Link to="/login">Sign In</Link>
-        </p>
-      </div>
-    </MainLayout>
+            </div>
+            <div className="form-group">
+              <Input
+                size='large'
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group">
+              <Input
+                size='large'
+                type="password"
+                placeholder="Confirm Password"
+                name="passwordDouble"
+                value={passwordDouble}
+                onChange={onChange}
+              />
+            </div>
+            <input type="submit" className="btn btn-primary" value="Register" />
+          </form>
+          <p className="my-1">
+            Already have an account? <Link to="/login">Sign In</Link>
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }
 
-export default Register;
+export default withRouter(Register);
