@@ -2,13 +2,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentProfile } from 'store/profile/action';
 import { useEffect } from 'react';
+import Loader from 'components/commons/Loader/Loader';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const { profile, loading } = useSelector(state => state.profile);
 
   useEffect(() => {
     dispatch(getCurrentProfile());
   }, []);
+
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <div className="pages-wrapper">

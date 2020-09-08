@@ -13,16 +13,22 @@ const Navbar = ({ isAuthenticated }) => {
     dispatch(logoutUser());
   };
 
-  const navLinks = isAuthenticated &&
+  const navLinks = isAuthenticated && (
     <>
-      <li><Link to='/'>Developers</Link></li>
+      <li>
+        <Link to='/dashboard'>
+          Dashboard
+        </Link>
+      </li>
+
       <li>
         <button className='navbar-logout' onClick={logout}>
           <LogoutOutlined className='user-outlined' />
           Logout
         </button>
       </li>
-    </>;
+    </>
+  );
 
   return (
     <header className='header bg-dark'>
