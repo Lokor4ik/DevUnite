@@ -27,11 +27,11 @@ export const loadUser = () => async dispatch => {
         type: AUTH_ERROR,
       });
     }
+  } else {
+    dispatch({
+      type: MAIN_LOADED,
+    });
   }
-
-  dispatch({
-    type: MAIN_LOADED,
-  });
 }
 
 export const registerUser = ({ name, email, password, history }) => async dispatch => {
