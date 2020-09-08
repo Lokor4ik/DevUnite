@@ -19,7 +19,7 @@ const Landing = () => {
               <Button type="primary" size='large'>Sign Up</Button>
             </Link>
             <Link to='/login'>
-              <Button size='large'>Log In</Button>
+              <Button size='large'>Sign In</Button>
             </Link>
           </div>
         </div>

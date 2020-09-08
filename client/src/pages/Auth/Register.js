@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { registerUser } from '../../store/auth/action';
 import { message, Input } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const Register = ({ history }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,10 @@ const Register = ({ history }) => {
       <section className="register">
         <div className="container">
           <h1 className="large text-primary">Sign Up</h1>
-          <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+          <p className="lead">
+            <UserOutlined className='user-outlined' />
+            Create Your Account
+            </p>
           <form className="form" onSubmit={onSubmit}>
             <div className="form-group">
               <Input

@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/commons/Navbar/Navbar';
-import { useRoutes } from 'routes';
+import { useRoutes } from 'routes/routes';
 import { useDispatch, useSelector } from 'react-redux';
-// import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './store/auth/action';
+import Loader from 'components/commons/Loader/Loader';
 
 import "antd/dist/antd.css";
 import './App.scss';
-import Loader from 'components/commons/Loader/Loader';
-/* if (localStorage.token) {
-  setAuthToken(localStorage.token);
-} */
 
 const App = () => {
   const dispatch = useDispatch();

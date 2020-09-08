@@ -45,14 +45,13 @@ export const registerUser = ({ name, email, password, history }) => async dispat
 
   try {
     const res = await axios.post('/api/users', body, config);
-    console.log(res)
 
     dispatch({
       type: REGISTER_SUCCESS,
+      payload: res.data,
     });
 
-    message.success('You are successfully registered');
-    history.push('/login');
+    dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
 
