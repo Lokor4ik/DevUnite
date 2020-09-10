@@ -6,15 +6,15 @@ import Loader from 'components/commons/Loader/Loader';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { profile, loading } = useSelector(state => state.profile);
+  const { profile, loading } = useSelector(state => state.profileUser);
 
   useEffect(() => {
     dispatch(getCurrentProfile());
   }, []);
 
-  if (loading) {
-    return <Loader />
-  }
+  /*  if (loading || !profile) {
+     return <Loader />
+   } */
 
   return (
     <div className="pages-wrapper">
