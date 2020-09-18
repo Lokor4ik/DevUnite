@@ -10,11 +10,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getCurrentProfile());
-  }, []);
+  }, [dispatch]);
 
-  /*  if (loading || !profile) {
-     return <Loader />
-   } */
+  if (loading || !profile) {
+    return <Loader />
+  }
 
   return (
     <div className="pages-wrapper">

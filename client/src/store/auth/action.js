@@ -9,12 +9,13 @@ import {
   LOGIN_FAILURE,
   LOGOUT,
 } from './types';
-import setAuthToken from '../../utils/setAuthToken';
 import { message } from 'antd';
+import setAuthToken from 'utils/setAuthToken';
 
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
+
     try {
       const res = await axios.get('/api/auth');
 
@@ -23,6 +24,8 @@ export const loadUser = () => async dispatch => {
         payload: res.data,
       });
     } catch (error) {
+      localStorage.removeItem('token');
+
       dispatch({
         type: AUTH_ERROR,
       });
@@ -34,7 +37,7 @@ export const loadUser = () => async dispatch => {
   }
 }
 
-export const registerUser = ({ name, email, password, history }) => async dispatch => {
+export const registerUser = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -45,6 +48,7 @@ export const registerUser = ({ name, email, password, history }) => async dispat
 
   try {
     const res = await axios.post('/api/users', body, config);
+    localStorage.setItem('token', res.data.token);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -60,6 +64,8 @@ export const registerUser = ({ name, email, password, history }) => async dispat
         message.error(element.msg);
       });
     }
+
+    localStorage.removeItem('token');
 
     dispatch({
       type: REGISTER_FAILURE,
@@ -78,6 +84,7 @@ export const loginUser = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post('/api/auth', body, config);
+    localStorage.setItem('token', res.data.token);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -92,6 +99,8 @@ export const loginUser = (email, password) => async dispatch => {
       });
     }
 
+    localStorage.removeItem('token');
+
     dispatch({
       type: LOGIN_FAILURE,
     });
@@ -99,6 +108,8 @@ export const loginUser = (email, password) => async dispatch => {
 }
 
 export const logoutUser = () => async dispatch => {
+  localStorage.removeItem('token');
+
   dispatch({
     type: LOGOUT,
   });

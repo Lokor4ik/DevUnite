@@ -32,7 +32,6 @@ const reducer = (state = initialState, action) => {
       }
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         ...action.payload,
@@ -43,7 +42,6 @@ const reducer = (state = initialState, action) => {
     case AUTH_ERROR:
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
-      localStorage.removeItem('token');
       return {
         ...state,
         token: null,

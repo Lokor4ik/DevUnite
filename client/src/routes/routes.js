@@ -12,6 +12,7 @@ export const useRoutes = isAuthenticated => {
       <Switch>
         <Route exact path='/dashboard' component={Dashboard} />
         <Redirect to="/dashboard" />
+        <div />
       </Switch>
     );
   }
