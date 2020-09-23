@@ -1,11 +1,11 @@
 ﻿import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import { registerUser } from '../../store/auth/action';
+import { Link } from 'react-router-dom';
+import { registerUser } from 'store/auth/action';
 import { message, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-const Register = ({ history }) => {
+const Register = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -15,17 +15,15 @@ const Register = ({ history }) => {
     passwordDouble: ''
   });
 
-  const { name, email, password, passwordDouble } = formData;
-
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== passwordDouble) {
+    if (formData.password !== formData.passwordDouble) {
       message.error('Passwords do not match');
     } else {
-      dispatch(registerUser({ name, email, password, history }));
+      dispatch(registerUser(formData.name, formData.email, formData.password));
     }
   }
 
@@ -45,7 +43,7 @@ const Register = ({ history }) => {
                 type="text"
                 placeholder="Name"
                 name="name"
-                value={name}
+                value={formData.name}
                 onChange={onChange}
               />
             </div>
@@ -55,7 +53,7 @@ const Register = ({ history }) => {
                 type="email"
                 placeholder="Email Address"
                 name="email"
-                value={email}
+                value={formData.email}
                 onChange={onChange}
               />
               <small className="form-text" >
@@ -68,7 +66,7 @@ const Register = ({ history }) => {
                 type="password"
                 placeholder="Password"
                 name="password"
-                value={password}
+                value={formData.password}
                 onChange={onChange}
               />
             </div>
@@ -78,7 +76,7 @@ const Register = ({ history }) => {
                 type="password"
                 placeholder="Confirm Password"
                 name="passwordDouble"
-                value={passwordDouble}
+                value={formData.passwordDouble}
                 onChange={onChange}
               />
             </div>
@@ -93,4 +91,4 @@ const Register = ({ history }) => {
   );
 }
 
-export default withRouter(Register);
+export default Register;

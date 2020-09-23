@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useRoutes } from 'routes/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from './components/commons/Navbar/Navbar';
+import Navbar from 'components/commons/Navbar/Navbar';
 import Loader from 'components/commons/Loader/Loader';
-import { loadUser } from './store/auth/action';
+import { loadUser } from 'store/auth/action';
 
 import 'antd/dist/antd.css';
 import './App.scss';
