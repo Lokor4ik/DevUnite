@@ -1,9 +1,12 @@
 ﻿import {
+  REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  MAIN_LOADED,
-  USER_LOADED,
+  MAIN_LOADED_SUCCESS,
+  USER_LOADING_REQUEST,
+  USER_LOADED_SUCCESS,
   AUTH_ERROR,
+  LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
@@ -12,18 +15,33 @@
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
-  loading: true,
+  loading: false,
   user: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case MAIN_LOADED:
+    case MAIN_LOADED_SUCCESS:
       return {
         ...state,
         loading: false,
       }
-    case USER_LOADED:
+    case REGISTER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case USER_LOADING_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case USER_LOADED_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
@@ -47,6 +65,7 @@ const reducer = (state = initialState, action) => {
         token: null,
         isAuthenticated: false,
         loading: false,
+        user: null,
       }
     default:
       return state;
