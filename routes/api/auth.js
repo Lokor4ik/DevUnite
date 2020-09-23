@@ -67,7 +67,10 @@ router.post('/',
             throw err;
           }
 
-          res.json({ token });
+          res.json({
+            token,
+            user,
+          });
         }
       );
     } catch (error) {
