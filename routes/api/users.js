@@ -61,6 +61,14 @@ router.post('/',
         }
       };
 
+      const userData = {
+        _id: user.id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        date: user.date,
+      }
+
       jwt.sign(
         payload,
         config.get('jwtSecret'),
@@ -70,7 +78,10 @@ router.post('/',
             throw err;
           }
 
-          res.json({ token });
+          res.json({
+            token,
+            user: userData,
+          });
         }
       );
     } catch (error) {
