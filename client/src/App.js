@@ -6,7 +6,7 @@ import Navbar from './components/commons/Navbar/Navbar';
 import Loader from 'components/commons/Loader/Loader';
 import { loadUser } from './store/auth/action';
 
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css';
 import './App.scss';
 
 const App = () => {
