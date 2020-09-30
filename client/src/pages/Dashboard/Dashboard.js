@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentProfile } from 'store/profile/action';
 import Loader from 'components/commons/Loader/Loader';
+import MainLayout from 'hoc/MainLayout';
 import { UserOutlined } from '@ant-design/icons';
 
 const Dashboard = () => {
@@ -19,29 +20,25 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="pages-wrapper">
-      <section className="dashboard">
-        <div className="container">
-          <h1 className="large text-primary">Dashboard</h1>
-          <p className="lead">
-            <UserOutlined className='user-outlined' />
-            Welcome {user && user.name}
-          </p>
-          {
-            profile
-              ? `has profile`
-              : (
-                <>
-                  <p>You haven't yet setup a profile, please add some info.</p>
-                  <Link to='/create-profile' className='btn btn-primary my-1'>
-                    Create profile
+    <MainLayout sectionName='dashboard'>
+      <h1 className="large text-primary">Dashboard</h1>
+      <p className="lead">
+        <UserOutlined className='user-outlined' />
+          Welcome {user && user.name}
+      </p>
+      {
+        profile
+          ? `has profile`
+          : (
+            <>
+              <p>You haven't yet setup a profile, please add some info.</p>
+              <Link to='/create-profile' className='btn btn-primary my-1'>
+                Create profile
                   </Link>
-                </>
-              )
-          }
-        </div>
-      </section>
-    </div>
+            </>
+          )
+      }
+    </MainLayout>
   );
 }
 

@@ -1,10 +1,14 @@
 ﻿import React from 'react';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, sectionName }) => {
   return (
-    <>
-      {children}
-    </>
+    <div className='pages-wrapper'>
+      <section className={sectionName}>
+        <div className='container'>
+          {children}
+        </div>
+      </section>
+    </div>
   );
 }
 
