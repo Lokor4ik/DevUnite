@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from 'store/auth/action';
 import { LogoutOutlined, TeamOutlined } from '@ant-design/icons';
@@ -8,9 +8,11 @@ import './Navbar.scss';
 
 const Navbar = ({ isAuthenticated }) => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const logout = () => {
     dispatch(logoutUser());
+    history.push('/');
   };
 
   const navLinks = isAuthenticated && (
@@ -33,7 +35,7 @@ const Navbar = ({ isAuthenticated }) => {
   return (
     <header className='header bg-dark'>
       <h1>
-        <Link to="/">
+        <Link to={isAuthenticated ? '/dashboard' : '/'}>
           <TeamOutlined />
           DevUnite
         </Link>
