@@ -1,7 +1,7 @@
 ﻿import {
-  PROFILE_REQUEST,
+  GET_PROFILE_REQUEST,
   GET_PROFILE_SUCCESS,
-  PROFILE_ERROR,
+  GET_PROFILE_ERROR,
   CLEAR_PROFILE,
 } from './types';
 
@@ -15,7 +15,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case PROFILE_REQUEST:
+    case GET_PROFILE_REQUEST:
       return {
         ...state,
         loading: true,
@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
         profile: action.payload,
         loading: false,
       }
-    case PROFILE_ERROR:
+    case GET_PROFILE_ERROR:
       return {
         ...state,
         error: action.payload,
