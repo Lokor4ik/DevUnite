@@ -33,7 +33,7 @@ export const getCurrentProfile = () => async dispatch => {
   }
 }
 
-export const createProfile = (formData, edit = false) => async dispatch => {
+export const createProfile = (formData, hasProfile) => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -54,7 +54,7 @@ export const createProfile = (formData, edit = false) => async dispatch => {
       payload: res.data,
     });
 
-    message.success(edit ? 'Profile Updated' : 'Profile Created');
+    message.success(hasProfile ? 'Profile Updated' : 'Profile Created');
   } catch (error) {
     const errors = error.response.data.errors;
 
