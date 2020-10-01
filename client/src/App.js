@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useRoutes } from 'routes/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { loadUser } from 'store/auth/action';
+import { getCurrentProfile } from 'store/profile/action';
 import Navbar from 'components/commons/Navbar/Navbar';
 import Loader from 'components/commons/Loader/Loader';
-import { loadUser } from 'store/auth/action';
 
 import 'antd/dist/antd.css';
 import './App.scss';
@@ -15,8 +16,12 @@ const App = () => {
   const routes = useRoutes(isAuthenticated);
 
   useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
+    if (!isAuthenticated) {
+      dispatch(loadUser());
+    } else {
+      dispatch(getCurrentProfile());
+    }
+  }, [dispatch, isAuthenticated]);
 
   if (loading) {
     return <Loader />;
