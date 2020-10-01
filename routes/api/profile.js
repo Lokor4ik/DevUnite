@@ -40,63 +40,37 @@ router.post('/', [auth, [
     }
 
     const {
+      company = '',
+      website = '',
+      location = '',
+      status = '',
+      skills = '',
+      bio = '',
+      githubUserName = '',
+      youTube = '',
+      facebook = '',
+      twitter = '',
+      instagram = '',
+      linkedIn = ''
+    } = req.body;
+
+    const profileFields = {
       company,
       website,
       location,
-      bio,
       status,
+      skills: skills.split(',').map(skill => skill.trim()),
+      bio,
       githubUserName,
-      skills,
-      youTube,
-      facebook,
-      twitter,
-      instagram,
-      linkedIn
-    } = req.body;
-
-    // Build profile object
-    const profileFields = {};
-    profileFields.user = req.user.id;
-
-    if (company) {
-      profileFields.company = company;
-    }
-    if (website) {
-      profileFields.website = website;
-    }
-    if (location) {
-      profileFields.location = location;
-    }
-    if (bio) {
-      profileFields.bio = bio;
-    }
-    if (status) {
-      profileFields.status = status;
-    }
-    if (githubUserName) {
-      profileFields.githubUserName = githubUserName;
-    }
-    if (skills) {
-      profileFields.skills = skills.split(',').map(skill => skill.trim());
-    }
-
-    // Build social object
-    profileFields.social = {};
-    if (youTube) {
-      profileFields.social.youTube = youTube;
-    }
-    if (facebook) {
-      profileFields.social.facebook = facebook;
-    }
-    if (twitter) {
-      profileFields.social.twitter = twitter;
-    }
-    if (instagram) {
-      profileFields.social.instagram = instagram;
-    }
-    if (linkedIn) {
-      profileFields.social.linkedIn = linkedIn;
-    }
+      social: {
+        youTube,
+        facebook,
+        twitter,
+        instagram,
+        linkedIn,
+      },
+      user: req.user.id,
+    };
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
