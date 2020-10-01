@@ -14,9 +14,10 @@
 
 const initialState = {
   token: localStorage.getItem('token'),
-  isAuthenticated: null,
+  isAuthenticated: false,
   loading: true,
   user: null,
+  error: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,15 +28,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
       }
     case REGISTER_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      }
     case LOGIN_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      }
     case USER_LOADING_REQUEST:
       return {
         ...state,
@@ -47,6 +40,7 @@ const reducer = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
         user: action.payload,
+        error: {},
       }
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
@@ -55,6 +49,7 @@ const reducer = (state = initialState, action) => {
         ...action.payload,
         isAuthenticated: true,
         loading: false,
+        error: {},
       }
     case LOGOUT:
     case AUTH_ERROR:
@@ -66,6 +61,7 @@ const reducer = (state = initialState, action) => {
         isAuthenticated: false,
         loading: false,
         user: null,
+        error: action.payload,
       }
     default:
       return state;
