@@ -18,12 +18,13 @@ import { message } from 'antd';
 import setAuthToken from 'utils/setAuthToken';
 
 export const loadUser = () => async dispatch => {
-  dispatch({ type: USER_LOADING_REQUEST });
 
   if (localStorage.token) {
     setAuthToken(localStorage.token);
 
     try {
+      dispatch({ type: USER_LOADING_REQUEST });
+
       const res = await axios.get('/api/auth');
 
       dispatch({
@@ -44,7 +45,7 @@ export const loadUser = () => async dispatch => {
   }
 }
 
-export const registerUser = (name, email, password) => async dispatch => {
+export const registerUser = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -76,11 +77,12 @@ export const registerUser = (name, email, password) => async dispatch => {
 
     dispatch({
       type: REGISTER_FAILURE,
+      payload: { msg: error.response.statusText, status: error.response.status }
     });
   }
 }
 
-export const loginUser = (email, password) => async dispatch => {
+export const loginUser = ({ email, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -112,6 +114,7 @@ export const loginUser = (email, password) => async dispatch => {
 
     dispatch({
       type: LOGIN_FAILURE,
+      payload: { msg: error.response.statusText, status: error.response.status }
     });
   }
 }
