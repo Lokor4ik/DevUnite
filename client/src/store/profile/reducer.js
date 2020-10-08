@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-      }
+      };
     case CREATE_PROFILE_SUCCESS:
     case GET_PROFILE_SUCCESS:
       return {
@@ -52,14 +52,14 @@ const reducer = (state = initialState, action) => {
         },
         hasProfile: true,
         loading: false,
-      }
+      };
     case CREATE_PROFILE_ERROR:
     case GET_PROFILE_ERROR:
       return {
         ...state,
         error: action.payload,
         loading: false,
-      }
+      };
     case CLEAR_PROFILE:
       return {
         ...state,
@@ -86,7 +86,7 @@ const reducer = (state = initialState, action) => {
         repos: [],
         loading: false,
         error: {},
-      }
+      };
     default:
       return state;
   }

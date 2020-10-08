@@ -1,4 +1,7 @@
 ﻿import axios from 'axios';
+import { message } from 'antd';
+import setAuthToken from 'utils/setAuthToken';
+import { CLEAR_PROFILE } from 'store/profile/types';
 import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
@@ -12,13 +15,8 @@ import {
   LOGIN_FAILURE,
   LOGOUT,
 } from './types';
-import { CLEAR_PROFILE } from 'store/profile/types';
-
-import { message } from 'antd';
-import setAuthToken from 'utils/setAuthToken';
 
 export const loadUser = () => async dispatch => {
-
   if (localStorage.token) {
     setAuthToken(localStorage.token);
 
@@ -43,13 +41,13 @@ export const loadUser = () => async dispatch => {
       type: MAIN_LOADED_SUCCESS,
     });
   }
-}
+};
 
 export const registerUser = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({ name, email, password });
@@ -65,7 +63,7 @@ export const registerUser = ({ name, email, password }) => async dispatch => {
       payload: res.data,
     });
   } catch (error) {
-    const errors = error.response.data.errors;
+    const { errors } = error.response.data;
 
     if (errors) {
       errors.forEach(element => {
@@ -77,16 +75,16 @@ export const registerUser = ({ name, email, password }) => async dispatch => {
 
     dispatch({
       type: REGISTER_FAILURE,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: { msg: error.response.statusText, status: error.response.status },
     });
   }
-}
+};
 
 export const loginUser = ({ email, password }) => async dispatch => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({ email, password });
@@ -102,7 +100,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
       payload: res.data,
     });
   } catch (error) {
-    const errors = error.response.data.errors;
+    const { errors } = error.response.data;
 
     if (errors) {
       errors.forEach(element => {
@@ -114,14 +112,14 @@ export const loginUser = ({ email, password }) => async dispatch => {
 
     dispatch({
       type: LOGIN_FAILURE,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: { msg: error.response.statusText, status: error.response.status },
     });
   }
-}
+};
 
 export const logoutUser = () => async dispatch => {
   localStorage.removeItem('token');
 
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
-}
+};

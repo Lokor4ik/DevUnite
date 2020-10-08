@@ -26,14 +26,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-      }
+      };
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
     case USER_LOADING_REQUEST:
       return {
         ...state,
         loading: true,
-      }
+      };
     case USER_LOADED_SUCCESS:
       return {
         ...state,
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
         user: action.payload,
         error: {},
-      }
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       return {
@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
         error: {},
-      }
+      };
     case LOGOUT:
     case AUTH_ERROR:
     case REGISTER_FAILURE:
@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
         user: null,
         error: action.payload,
-      }
+      };
     default:
       return state;
   }

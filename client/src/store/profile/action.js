@@ -1,4 +1,5 @@
 ﻿import axios from 'axios';
+import { message } from 'antd';
 import setAuthToken from 'utils/setAuthToken';
 import {
   GET_PROFILE_REQUEST,
@@ -8,8 +9,6 @@ import {
   CREATE_PROFILE_SUCCESS,
   CREATE_PROFILE_ERROR,
 } from './types';
-
-import { message } from 'antd';
 
 export const getCurrentProfile = () => async dispatch => {
   if (localStorage.token) {
@@ -31,7 +30,7 @@ export const getCurrentProfile = () => async dispatch => {
       payload: { msg: error.response.statusText, status: error.response.status },
     });
   }
-}
+};
 
 export const createProfile = (formData, hasProfile) => async dispatch => {
   if (localStorage.token) {
@@ -43,8 +42,8 @@ export const createProfile = (formData, hasProfile) => async dispatch => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
 
     const res = await axios.post('/api/profile', formData, config);
@@ -56,7 +55,7 @@ export const createProfile = (formData, hasProfile) => async dispatch => {
 
     message.success(hasProfile ? 'Profile Updated' : 'Profile Created');
   } catch (error) {
-    const errors = error.response.data.errors;
+    const { errors } = error.response.data;
 
     if (errors) {
       errors.forEach(element => {
@@ -69,4 +68,4 @@ export const createProfile = (formData, hasProfile) => async dispatch => {
       payload: { msg: error.response.statusText, status: error.response.status },
     });
   }
-}
+};
