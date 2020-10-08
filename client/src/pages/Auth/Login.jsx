@@ -7,33 +7,32 @@ import MainLayout from 'hoc/MainLayout';
 import { message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-
 const Login = () => {
   const dispatch = useDispatch();
   const { register, errors, handleSubmit } = useForm();
 
   useEffect(() => {
     if (Object.keys(errors).length) {
-      message.error('All fields are required')
+      message.error('All fields are required');
     }
   }, [errors]);
 
   const onSubmit = (data) => {
     dispatch(loginUser(data));
-  }
+  };
 
   return (
-    <MainLayout sectionName='login'>
+    <MainLayout sectionName="login">
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
-        <UserOutlined className='user-outlined' />
+        <UserOutlined className="user-outlined" />
         Sign Into Your Account
       </p>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <input
             ref={register({ required: true })}
-            size='large'
+            size="large"
             type="email"
             placeholder="Email Address"
             name="email"
@@ -42,7 +41,7 @@ const Login = () => {
         <div className="form-group">
           <input
             ref={register({ required: true })}
-            size='large'
+            size="large"
             type="password"
             placeholder="Password"
             name="password"
@@ -51,10 +50,10 @@ const Login = () => {
         <input type="submit" className="btn btn-primary" value="Login" />
       </form>
       <p className="my-1">
-        Don't have an account? <Link to="/register">Sign Up</Link>
+        Don&apos;t have an account? <Link to="/register">Sign Up</Link>
       </p>
     </MainLayout>
   );
-}
+};
 
 export default Login;

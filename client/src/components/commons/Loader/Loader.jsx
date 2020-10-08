@@ -1,5 +1,5 @@
-﻿import React from "react";
-import Loader from "react-loader";
+﻿import React from 'react';
+import Loader from 'react-loader';
 
 const Loading = () => {
   const options = {
@@ -20,7 +20,8 @@ const Loading = () => {
     left: '50%',
     scale: 1,
     loadedClassName: 'loadedContent',
-  }
+  };
+
   return (
     <div className="loader">
       <Loader

@@ -15,17 +15,17 @@ const Landing = () => {
             other developers
           </p>
           <div className="buttons">
-            <Link to='/register'>
-              <Button type="primary" size='large'>Sign Up</Button>
+            <Link to="/register">
+              <Button type="primary" size="large">Sign Up</Button>
             </Link>
-            <Link to='/login'>
-              <Button size='large'>Sign In</Button>
+            <Link to="/login">
+              <Button size="large">Sign In</Button>
             </Link>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Landing;

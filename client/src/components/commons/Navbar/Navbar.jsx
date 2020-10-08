@@ -8,7 +8,7 @@ import './Navbar.scss';
 
 const Navbar = ({ isAuthenticated }) => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
   const logout = () => {
     dispatch(logoutUser());
@@ -16,37 +16,35 @@ const Navbar = ({ isAuthenticated }) => {
   };
 
   const navLinks = isAuthenticated && (
-    <>
-      <li>
-        <Link to='/dashboard'>
-          Dashboard
-        </Link>
-      </li>
+    <nav className="navbar">
+      <ul>
+        <li>
+          <Link to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
 
-      <li>
-        <button className='navbar-logout' onClick={logout}>
-          <LogoutOutlined className='user-outlined' />
-          Logout
-        </button>
-      </li>
-    </>
+        <li>
+          <button className="navbar-logout" onClick={logout}>
+            <LogoutOutlined className="user-outlined" />
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
 
   return (
-    <header className='header bg-dark'>
+    <header className="header bg-dark">
       <h1>
         <Link to={isAuthenticated ? '/dashboard' : '/'}>
           <TeamOutlined />
           DevUnite
         </Link>
       </h1>
-      <nav className="navbar">
-        <ul>
-          {navLinks}
-        </ul>
-      </nav>
+      {navLinks}
     </header>
   );
-}
+};
 
 export default Navbar;

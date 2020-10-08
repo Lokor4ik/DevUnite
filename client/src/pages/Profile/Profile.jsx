@@ -21,7 +21,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (Object.keys(errors).length) {
-      message.error('Please fill in all fields with an asterisk *')
+      message.error('Please fill in all fields with an asterisk *');
     }
   }, [errors]);
 
@@ -30,25 +30,25 @@ const Profile = () => {
   };
 
   const onSubmit = (data) => {
-    if (data.status === 'noStatus') {
-      message.error('Please fill in all fields with an asterisk *')
+    if (data.status.includes('noStatus')) {
+      message.error('Please fill in all fields with an asterisk *');
     } else {
       dispatch(createProfile(data, hasProfile));
     }
   };
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
-    <MainLayout sectionName='edit-profile'>
+    <MainLayout sectionName="edit-profile">
       <h1 className="large text-primary">
         Create Your Profile
       </h1>
       <p className="lead">
-        <i className="fas fa-user"></i>
-        Let's get some information to make your profile stand out
+        <i className="fas fa-user" />
+        Let&apos;s get some information to make your profile stand out
       </p>
       <small>* = required field</small>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -93,7 +93,7 @@ const Profile = () => {
           <small className="form-text">If you want your latest repos and a Github link, include your username</small>
         </div>
         <div className="form-group">
-          <textarea placeholder="A short bio of yourself" name="bio"></textarea>
+          <textarea placeholder="A short bio of yourself" name="bio" />
           <small className="form-text">Tell us a little about yourself</small>
         </div>
 
@@ -107,43 +107,58 @@ const Profile = () => {
         {socialInputs && (
           <>
             <div className="form-group social-input">
-              <i className="fab fa-twitter fa-2x"></i>
+              <i className="fab fa-twitter fa-2x" />
               <input
                 ref={register}
                 defaultValue={profile.social.twitter}
-                type="text" placeholder="Twitter URL" name="twitter" />
+                type="text"
+                placeholder="Twitter URL"
+                name="twitter"
+              />
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-facebook fa-2x"></i>
+              <i className="fab fa-facebook fa-2x" />
               <input
                 ref={register}
                 defaultValue={profile.social.facebook}
-                type="text" placeholder="Facebook URL" name="facebook" />
+                type="text"
+                placeholder="Facebook URL"
+                name="facebook"
+              />
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-youtube fa-2x"></i>
+              <i className="fab fa-youtube fa-2x" />
               <input
                 ref={register}
                 defaultValue={profile.social.youTube}
-                type="text" placeholder="YouTube URL" name="youTube" />
+                type="text"
+                placeholder="YouTube URL"
+                name="youTube"
+              />
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-linkedin fa-2x"></i>
+              <i className="fab fa-linkedin fa-2x" />
               <input
                 ref={register}
                 defaultValue={profile.social.linkedIn}
-                type="text" placeholder="Linkedin URL" name="linkedIn" />
+                type="text"
+                placeholder="Linkedin URL"
+                name="linkedIn"
+              />
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-instagram fa-2x"></i>
+              <i className="fab fa-instagram fa-2x" />
               <input
                 ref={register}
                 defaultValue={profile.social.instagram}
-                type="text" placeholder="Instagram URL" name="instagram" />
+                type="text"
+                placeholder="Instagram URL"
+                name="instagram"
+              />
             </div>
           </>
         )}
@@ -152,6 +167,6 @@ const Profile = () => {
       </form>
     </MainLayout>
   );
-}
+};
 
 export default Profile;

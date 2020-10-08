@@ -13,7 +13,7 @@ const Register = () => {
 
   useEffect(() => {
     if (Object.keys(errors).length) {
-      message.error('All fields are required')
+      message.error('All fields are required');
     }
   }, [errors]);
 
@@ -23,20 +23,20 @@ const Register = () => {
     } else {
       dispatch(registerUser(data));
     }
-  }
+  };
 
   return (
-    <MainLayout sectionName='register'>
+    <MainLayout sectionName="register">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
-        <UserOutlined className='user-outlined' />
+        <UserOutlined className="user-outlined" />
         Create Your Account
       </p>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <input
             ref={register({ required: true })}
-            size='large'
+            size="large"
             type="text"
             placeholder="Name"
             name="name"
@@ -45,19 +45,19 @@ const Register = () => {
         <div className="form-group">
           <input
             ref={register({ required: true })}
-            size='large'
+            size="large"
             type="email"
             placeholder="Email Address"
             name="email"
           />
-          <small className="form-text" >
+          <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a Gravatar email
           </small>
         </div>
         <div className="form-group">
           <input
             ref={register({ required: true })}
-            size='large'
+            size="large"
             type="password"
             placeholder="Password"
             name="password"
@@ -66,7 +66,7 @@ const Register = () => {
         <div className="form-group">
           <input
             ref={register({ required: true })}
-            size='large'
+            size="large"
             type="password"
             placeholder="Confirm Password"
             name="passwordDouble"
@@ -79,6 +79,6 @@ const Register = () => {
       </p>
     </MainLayout>
   );
-}
+};
 
 export default Register;
