@@ -4,7 +4,8 @@ import Landing from 'pages/Landing/Landing';
 import Login from 'pages/Auth/Login';
 import Register from 'pages/Auth/Register';
 import Dashboard from 'pages/Dashboard/Dashboard';
-import CreateProfile from 'pages/Profile/Profile';
+import Profile from 'pages/Profile/Profile';
+import Experience from 'pages/Experience/Experience';
 import NotFound from 'pages/NotFound/NotFound';
 
 export const useRoutes = isAuthenticated => {
@@ -12,7 +13,8 @@ export const useRoutes = isAuthenticated => {
     return (
       <Switch>
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/profile" component={CreateProfile} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/experience" component={Experience} />
         <Redirect exact from={['/login', '/register', '/']} to="/dashboard" />
         <Route path="*" component={NotFound} />
       </Switch>

@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { createProfile } from 'store/profile/action';
+import { createUpdateProfile } from 'store/profile/action';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'components/commons/Loader/Loader';
 import MainLayout from 'hoc/MainLayout';
@@ -33,7 +33,7 @@ const Profile = () => {
     if (data.status.includes('noStatus')) {
       message.error('Please fill in all fields with an asterisk *');
     } else {
-      dispatch(createProfile(data, hasProfile));
+      dispatch(createUpdateProfile(data, '', hasProfile, 'post'));
     }
   };
 
