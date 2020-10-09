@@ -6,6 +6,9 @@
   CREATE_PROFILE_REQUEST,
   CREATE_PROFILE_SUCCESS,
   CREATE_PROFILE_ERROR,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_ERROR,
 } from './types';
 
 const initialState = {
@@ -17,8 +20,6 @@ const initialState = {
     skills: [],
     bio: '',
     githubUserName: '',
-    experience: [],
-    education: [],
     social: {
       youTube: '',
       twitter: '',
@@ -37,12 +38,14 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_PROFILE_REQUEST:
+    case UPDATE_PROFILE_REQUEST:
     case GET_PROFILE_REQUEST:
       return {
         ...state,
         loading: true,
       };
     case CREATE_PROFILE_SUCCESS:
+    case UPDATE_PROFILE_SUCCESS:
     case GET_PROFILE_SUCCESS:
       return {
         ...state,
@@ -54,6 +57,7 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
     case CREATE_PROFILE_ERROR:
+    case UPDATE_PROFILE_ERROR:
     case GET_PROFILE_ERROR:
       return {
         ...state,
@@ -71,8 +75,6 @@ const reducer = (state = initialState, action) => {
           skills: [],
           bio: '',
           githubUserName: '',
-          experience: [],
-          education: [],
           social: {
             youTube: '',
             twitter: '',

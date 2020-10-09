@@ -1,6 +1,7 @@
 ﻿import axios from 'axios';
 import { message } from 'antd';
 import setAuthToken from 'utils/setAuthToken';
+import { capitalizeFirstLetter } from 'utils/stringHelper';
 import {
   GET_PROFILE_REQUEST,
   GET_PROFILE_SUCCESS,
@@ -8,6 +9,9 @@ import {
   CREATE_PROFILE_REQUEST,
   CREATE_PROFILE_SUCCESS,
   CREATE_PROFILE_ERROR,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_ERROR,
 } from './types';
 
 export const getCurrentProfile = () => async dispatch => {
@@ -32,13 +36,19 @@ export const getCurrentProfile = () => async dispatch => {
   }
 };
 
-export const createProfile = (formData, hasProfile) => async dispatch => {
+export const createUpdateProfile = (formData, pathUrl, hasTypeProfile, method = 'post') => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   try {
-    dispatch({ type: CREATE_PROFILE_REQUEST });
+    dispatch({
+      type: hasTypeProfile
+        ? UPDATE_PROFILE_REQUEST
+        : CREATE_PROFILE_REQUEST,
+    });
+
+    const nameType = pathUrl.trim() ? capitalizeFirstLetter(pathUrl.slice(1)) : 'Profile';
 
     const config = {
       headers: {
@@ -46,14 +56,16 @@ export const createProfile = (formData, hasProfile) => async dispatch => {
       },
     };
 
-    const res = await axios.post('/api/profile', formData, config);
+    const res = await axios[method](`/api/profile${pathUrl}`, formData, config);
 
     dispatch({
-      type: CREATE_PROFILE_SUCCESS,
+      type: hasTypeProfile
+        ? UPDATE_PROFILE_SUCCESS
+        : CREATE_PROFILE_SUCCESS,
       payload: res.data,
     });
 
-    message.success(hasProfile ? 'Profile Updated' : 'Profile Created');
+    message.success(hasTypeProfile ? `${nameType} Updated` : `${nameType} Created`);
   } catch (error) {
     const { errors } = error.response.data;
 
@@ -64,7 +76,9 @@ export const createProfile = (formData, hasProfile) => async dispatch => {
     }
 
     dispatch({
-      type: CREATE_PROFILE_ERROR,
+      type: hasTypeProfile
+        ? UPDATE_PROFILE_ERROR
+        : CREATE_PROFILE_ERROR,
       payload: { msg: error.response.statusText, status: error.response.status },
     });
   }
