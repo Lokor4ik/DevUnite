@@ -1,3 +1,6 @@
 ﻿{
-  "mongoURI": "mongodb+srv://mak:mak@cluster0.fwg6y.mongodb.net/Cluster0?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://mak:mak@cluster0.fwg6y.mongodb.net/Cluster0?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "a7a0fa3cd4bb72e033a4",
+  "githubSecret": "c61095daa18498710df770f54fb66bb3f0aadae7"
 }

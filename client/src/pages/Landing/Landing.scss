@@ -1,0 +1,21 @@
+﻿.landing {
+  position: relative;
+  background: url("../../assets/img/landing_background.png") no-repeat center center/cover;
+  flex: 1;
+}
+
+.landing-inner {
+  color: #fff;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .x-large {
+    color: #fff;
+  }
+}
